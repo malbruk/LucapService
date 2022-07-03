@@ -1,6 +1,12 @@
+using Lucap.Repositories.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var cs = builder.Configuration["LucapDBConnectionString"];
+builder.Services.AddDbContext<LucapDBContext>(options => options.UseNpgsql(cs));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
