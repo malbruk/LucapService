@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lucap.Repositories\Lucap.Repositories.csproj" />
+    <ProjectReference Include="..\Lucap.Services\Lucap.Services.csproj" />
   </ItemGroup>
 
 </Project>

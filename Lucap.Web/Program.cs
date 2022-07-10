@@ -1,12 +1,24 @@
 using Lucap.Repositories.Models;
+using Lucap.Services;
 using Microsoft.EntityFrameworkCore;
+
+var LucapAppOrigin = "LucapAppOrigin";
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: LucapAppOrigin,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000", "https://myapp.onrender.com");
+                      });
+});
 
-var cs = builder.Configuration["LucapDBConnectionString"];
-builder.Services.AddDbContext<LucapDBContext>(options => options.UseNpgsql(cs));
+// Add services to the container.
+builder.Services.AddDbContext<LucapDBContext>(options => options.UseNpgsql(builder.Configuration["LucapDBConnectionString"]));
+
+builder.Services.AddLucapServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(LucapAppOrigin);
 
 app.UseAuthorization();
 
