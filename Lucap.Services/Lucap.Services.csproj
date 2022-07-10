@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lucap.Common\Lucap.Common.csproj" />
+    <ProjectReference Include="..\Lucap.Repositories\Lucap.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
