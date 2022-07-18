@@ -1,5 +1,5 @@
 ﻿using Lucap.Common.Models;
-using Lucap.Repositories.Models;
+using Lucap.Repositories.Entities;
 using Lucap.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

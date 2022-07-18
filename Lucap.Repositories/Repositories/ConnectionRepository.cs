@@ -1,5 +1,5 @@
 ﻿using Lucap.Repositories.Interfaces;
-using Lucap.Repositories.Models;
+using Lucap.Repositories.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Lucap.Repositories.Models;
+using Lucap.Repositories.Entities;
 
 namespace Lucap.Web.Controllers
 {

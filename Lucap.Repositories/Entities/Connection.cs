@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lucap.Repositories.Models
+namespace Lucap.Repositories.Entities
 {
     public partial class Connection
     {
         public Connection()
         {
             Queries = new HashSet<Query>();
+            Samples = new HashSet<Sample>();
         }
 
         public int Id { get; set; }
@@ -21,5 +22,6 @@ namespace Lucap.Repositories.Models
 
         public virtual User? User { get; set; }
         public virtual ICollection<Query> Queries { get; set; }
+        public virtual ICollection<Sample> Samples { get; set; }
     }
 }

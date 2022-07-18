@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Lucap.Repositories.Models
+namespace Lucap.Repositories.Entities
 {
     public partial class LucapDBContext : DbContext
     {
@@ -17,14 +17,16 @@ namespace Lucap.Repositories.Models
         }
 
         public virtual DbSet<Connection> Connections { get; set; } = null!;
+        public virtual DbSet<Image> Images { get; set; } = null!;
         public virtual DbSet<Query> Queries { get; set; } = null!;
+        public virtual DbSet<Sample> Samples { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("LucapDBConnectionString");
+                optionsBuilder.UseNpgsql("Name=LucapDBConnectionString");
             }
         }
 
@@ -70,6 +72,21 @@ namespace Lucap.Repositories.Models
                     .HasConstraintName("user_id");
             });
 
+            modelBuilder.Entity<Image>(entity =>
+            {
+                entity.ToTable("images");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.Content).HasColumnName("content");
+
+                entity.Property(e => e.Url)
+                    .HasMaxLength(200)
+                    .HasColumnName("url");
+            });
+
             modelBuilder.Entity<Query>(entity =>
             {
                 entity.ToTable("queries");
@@ -95,6 +112,22 @@ namespace Lucap.Repositories.Models
                     .WithMany(p => p.Queries)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("user_id");
+            });
+
+            modelBuilder.Entity<Sample>(entity =>
+            {
+                entity.ToTable("sample");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.ConnectionId).HasColumnName("connectionId");
+
+                entity.HasOne(d => d.Connection)
+                    .WithMany(p => p.Samples)
+                    .HasForeignKey(d => d.ConnectionId)
+                    .HasConstraintName("connectionForeignKey");
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -1,12 +1,7 @@
 ﻿using Lucap.Common.Models;
+using Lucap.Repositories.Entities;
 using Lucap.Repositories.Interfaces;
-using Lucap.Repositories.Models;
 using Lucap.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lucap.Services.Services
 {

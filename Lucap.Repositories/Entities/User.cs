@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lucap.Repositories.Models
+namespace Lucap.Repositories.Entities
 {
     public partial class User
     {
