@@ -50,9 +50,7 @@ builder.Services.AddMailKit(optionBuilder =>
 });
 builder.Services.AddOptions();
 builder.Services.AddScoped<EmailManager>();
-Console.WriteLine("GoogleCredentialsFilePath = " + builder.Configuration.GetSection("GoogleCredentials"));
-//builder.Services.Configure<GoogleStorageManagerOptions>(builder.Configuration.GetSection("GoogleCredentialsFilePath"));
-//builder.Services.AddScoped<GoogleStorageManager>();
+
 builder.Services.AddGoogleStorageService(builder.Configuration.GetSection("GoogleCredentials"));
 
 var app = builder.Build();
